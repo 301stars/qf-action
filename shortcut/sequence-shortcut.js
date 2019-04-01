@@ -3,6 +3,7 @@ import DelayAction from "../action/delay";
 import EventAction from "../action/event";
 import SequenceNode from "../node/sequence";
 import PromiseAction from "../action/promise";
+import CustomAction from "../action/custom";
 
 
 export default class SequenceShortcut {
@@ -44,4 +45,8 @@ export default class SequenceShortcut {
     return this;
   }
 
+  custom(onBegan: ()=>void,onExecute: ()=>boolean,onFinish: ()=>void) {
+    this.sequenceNode.add(new CustomAction(onBegan, onExecute, onFinish))
+    return this;
+  }
 }
