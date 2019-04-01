@@ -28,3 +28,8 @@ QFramework ActionKit for JavaScript
       console.log("simple delay after 10s")
     });
 ```
+
+## Author 作者
+* [rxdxxxx](https://github.com/rxdxxxx)
+* [EricsYin](https://github.com/EricsYin)
+* [liangxieq](https://github.com/liangxieq)
