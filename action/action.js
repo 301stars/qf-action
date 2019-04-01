@@ -2,24 +2,26 @@ export default class Action {
 
   finished = false;
 
-  onFinishCalled = false;
+  began() {
+    if (this.onBeganCallback) {
+      this.onBeganCallback();
+    }
 
-  beganed = false;
+    this.onBegan()
 
-  onBegan() {}
+    this.beganed = true;
+  }
+
 
   execute(dt) {
-
     if (!this.beganed) {
-      this.onBegan()
-      this.beganed = true;
+      this.began()
     }
 
     this.onExecute(dt)
 
     if (!this.onFinishCalled && this.finished) {
-      this.onFinish()
-      this.onFinishCalled = true;
+      this.finish()
     }
   }
 
@@ -30,9 +32,42 @@ export default class Action {
     this.onReset();
   }
 
-  onFinish() {}
+  // 支持子类 Action 主动调用，也支持内部自动触发
+  finish() {
+    if (this.onFinishCallback) {
+      this.onFinishCallback();
+    }
+    this.onFinish()
+    this.onFinishCalled = true;
+    this.finished = true;
+  }
 
-  onReset() {}
+  onFinishCalled = false;
 
-  onExecute(dt) {}
+  beganed = false;
+
+  onBegan() {
+  }
+
+  onFinish() {
+  }
+
+  onReset() {
+  }
+
+  onExecute(dt) {
+  }
+
+  onFinishCallback: ()=>void
+
+  onBeganCallback: ()=>void
+
+  finishCallback(onFinishCallback: ()=>void)
+  {
+    this.onFinishCallback = onFinishCallback;
+  }
+
+  beganCallback(onBeganCallback: ()=>void) {
+    this.onBeganCallback = onBeganCallback;
+  }
 }

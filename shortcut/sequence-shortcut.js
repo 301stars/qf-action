@@ -45,8 +45,12 @@ export default class SequenceShortcut {
     return this;
   }
 
-  custom(onBegan: ()=>void,onExecute: ()=>boolean,onFinish: ()=>void) {
+  custom(onBegan: ()=>void, onExecute: ()=>boolean, onFinish: ()=>void) {
     this.sequenceNode.add(new CustomAction(onBegan, onExecute, onFinish))
     return this;
+  }
+
+  onFinish(onFinishCallback: ()=>void) {
+    this.sequenceNode.finishCallback(onFinishCallback);
   }
 }
