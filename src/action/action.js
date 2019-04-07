@@ -1,5 +1,4 @@
 export default class Action {
-
   finished = false;
 
   began() {
@@ -7,21 +6,20 @@ export default class Action {
       this.onBeganCallback();
     }
 
-    this.onBegan()
+    this.onBegan();
 
     this.beganed = true;
   }
 
-
   execute(dt) {
     if (!this.beganed) {
-      this.began()
+      this.began();
     }
 
-    this.onExecute(dt)
+    this.onExecute(dt);
 
     if (!this.onFinishCalled && this.finished) {
-      this.finish()
+      this.finish();
     }
   }
 
@@ -37,7 +35,7 @@ export default class Action {
     if (this.onFinishCallback) {
       this.onFinishCallback();
     }
-    this.onFinish()
+    this.onFinish();
     this.onFinishCalled = true;
     this.finished = true;
   }
@@ -46,28 +44,27 @@ export default class Action {
 
   beganed = false;
 
-  onBegan() {
+  onBegan() {}
+
+  onFinish() {}
+
+  onReset() {}
+
+  onExecute(dt) {}
+
+  onFinishCallback() {
+    console.error("需要自己实现");
   }
 
-  onFinish() {
+  onBeganCallback() {
+    console.error("需要自己实现");
   }
 
-  onReset() {
-  }
-
-  onExecute(dt) {
-  }
-
-  onFinishCallback: ()=>void
-
-  onBeganCallback: ()=>void
-
-  finishCallback(onFinishCallback: ()=>void)
-  {
+  finishCallback(onFinishCallback = () => {}) {
     this.onFinishCallback = onFinishCallback;
   }
 
-  beganCallback(onBeganCallback: ()=>void) {
+  beganCallback(onBeganCallback = () => {}) {
     this.onBeganCallback = onBeganCallback;
   }
 }

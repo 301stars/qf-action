@@ -5,12 +5,10 @@ import SequenceNode from "../node/sequence";
 import PromiseAction from "../action/promise";
 import CustomAction from "../action/custom";
 
-
 export default class SequenceShortcut {
+  sequenceNode = new SequenceNode();
 
-  sequenceNode: SequenceNode;
-
-  updater: Updater;
+  updater = new Updater();
 
   constructor() {
     this.sequenceNode = new SequenceNode();
@@ -28,10 +26,9 @@ export default class SequenceShortcut {
   }
 
   stop() {
-    this.updater.stop()
+    this.updater.stop();
     return this;
   }
-
 
   delay(seconds, callback) {
     this.sequenceNode.add(new DelayAction(seconds));
@@ -39,18 +36,18 @@ export default class SequenceShortcut {
     return this;
   }
 
-  promise(promiseGetter: ()=>Promise) {
+  promise(promiseGetter = () => Promise) {
     this.sequenceNode.add(new PromiseAction(promiseGetter));
 
     return this;
   }
 
-  custom(onBegan: ()=>void, onExecute: ()=>boolean, onFinish: ()=>void) {
-    this.sequenceNode.add(new CustomAction(onBegan, onExecute, onFinish))
+  custom(onBegan = () => {}, onExecute = () => false, onFinish = () => {}) {
+    this.sequenceNode.add(new CustomAction(onBegan, onExecute, onFinish));
     return this;
   }
 
-  onFinish(onFinishCallback: ()=>void) {
+  onFinish(onFinishCallback = () => {}) {
     this.sequenceNode.finishCallback(onFinishCallback);
   }
 }

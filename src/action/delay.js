@@ -1,7 +1,6 @@
 import Action from "./action";
 
 export default class DelayAction extends Action {
-
   constructor(delayTime) {
     super();
     this.delayTime = delayTime;

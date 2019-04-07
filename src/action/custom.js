@@ -1,15 +1,17 @@
 import Action from "./action";
 
-
 export default class CustomAction extends Action {
+  onExecuteFunc = () => false;
 
-  onExecuteFunc: ()=>boolean;
-
-  constructor(onBeganCallback: ()=>void, onExecuteFunc: ()=>boolean, onFinishCallback: ()=>void) {
-    super()
+  constructor(
+    onBeganCallback = () => {},
+    onExecuteFunc = () => fasle,
+    onFinishCallback = () => {}
+  ) {
+    super();
     this.beganCallback(onBeganCallback);
     this.onExecuteFunc = onExecuteFunc;
-    this.finishCallback(onFinishCallback)
+    this.finishCallback(onFinishCallback);
   }
 
   onExecute(dt) {
