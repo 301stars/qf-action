@@ -5,7 +5,7 @@ export default class Updater {
 
   running = false;
 
-  rootAction: Action;
+  rootActio = new Action();
 
   constructor(rootAction) {
     this.rootAction = rootAction;

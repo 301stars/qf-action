@@ -3,9 +3,9 @@ import SequenceNode from "./sequence";
 
 
 export default class RepeatNode extends Action {
-  sequence: SequenceNode;
+  sequence = new SequenceNode();
 
-  times: -1;
+  times = -1;
 
   constructor(times = -1) {
     super();

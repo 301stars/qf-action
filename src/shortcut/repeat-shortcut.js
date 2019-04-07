@@ -6,9 +6,9 @@ import EventAction from "../action/event";
 
 export default class RepeatShortcut {
 
-  repeatNode: RepeatNode;
+  repeatNode = new RepeatNode();
 
-  updater: Updater;
+  updater = new Updater();
 
   constructor(repeatNode) {
     this.repeatNode = repeatNode;
@@ -31,4 +31,11 @@ export default class RepeatShortcut {
     this.updater.stop()
     return this;
   }
+
+  dispose() {
+    this.stop()
+    this.updater = null;
+    return this
+  };
+
 }

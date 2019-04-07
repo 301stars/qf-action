@@ -2,9 +2,9 @@
 
 export default class GlobalUpdater {
 
-  static running: boolean;
+  static running = false;
 
-  static lastTime: number;
+  static lastTime = 0;
 
   static updaters = [];
 
