@@ -1,8 +1,11 @@
-# qf.js
+# qf-action
 QFramework ActionKit for JavaScript
 
 
 ``` javascript
+    import qf from 'qf-action/lib';
+
+
     const repeat = qf.repeat()
       .delay(30,()=>{
         console.log("log per 30s");
