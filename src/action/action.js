@@ -52,13 +52,9 @@ export default class Action {
 
   onExecute(dt) {}
 
-  onFinishCallback() {
-    console.error("需要自己实现");
-  }
+  onFinishCallback() {}
 
-  onBeganCallback() {
-    console.error("需要自己实现");
-  }
+  onBeganCallback() {}
 
   finishCallback(onFinishCallback = () => {}) {
     this.onFinishCallback = onFinishCallback;
